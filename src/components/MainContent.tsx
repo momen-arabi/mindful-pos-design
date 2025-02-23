@@ -1,4 +1,4 @@
-import { Coffee, IceCream, Pizza, Salad, LayoutGrid, Plus, Settings2 } from "lucide-react";
+import { Coffee, Pizza, Salad, LayoutGrid, Plus, Settings2, Sandwich, Cake } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -7,10 +7,10 @@ import { PlaceholderImage } from "./PlaceholderImage";
 const categories = [
   { icon: LayoutGrid, label: "All Menu", items: "110 Items" },
   { icon: Coffee, label: "Coffee", items: "20 Items", isActive: true },
-  { icon: IceCream, label: "Cakes", items: "20 Items" },
+  { icon: Cake, label: "Cakes", items: "20 Items" },
   { icon: Pizza, label: "Donuts", items: "20 Items" },
   { icon: Salad, label: "Pastries", items: "20 Items" },
-  { icon: Salad, label: "Sandwich", items: "20 Items" },
+  { icon: Sandwich, label: "Sandwich", items: "20 Items" },
 ];
 
 interface MainContentProps {
