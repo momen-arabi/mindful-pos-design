@@ -79,6 +79,8 @@ const BillsPanel = () => {
         </div>
       </div>
 
+      <Separator className="mb-4" />
+
       <div>
         <h3 className="text-base md:text-lg font-semibold mb-3 md:mb-4">Payment Method</h3>
         <div className="grid grid-cols-3 gap-2 mb-4 md:mb-6">
