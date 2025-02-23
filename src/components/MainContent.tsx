@@ -1,11 +1,10 @@
 
-import { Coffee, IceCream, Pizza, Burger, Salad } from "lucide-react";
+import { Coffee, IceCream, Pizza, Salad } from "lucide-react";
 
 const categories = [
   { id: "coffee", icon: Coffee, label: "Coffee" },
   { id: "icecream", icon: IceCream, label: "Ice Cream" },
   { id: "pizza", icon: Pizza, label: "Pizza" },
-  { id: "burger", icon: Burger, label: "Burger" },
   { id: "salad", icon: Salad, label: "Salad" },
 ];
 
