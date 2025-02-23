@@ -1,10 +1,11 @@
-import { Coffee, IceCream, Pizza, Salad, Settings2, Plus } from "lucide-react";
+import { Coffee, IceCream, Pizza, Salad, LayoutGrid, Plus, Settings2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { PlaceholderImage } from "./PlaceholderImage";
 
 const categories = [
+  { id: "all", icon: LayoutGrid, label: "All" },
   { id: "coffee", icon: Coffee, label: "Coffee" },
   { id: "icecream", icon: IceCream, label: "Ice Cream" },
   { id: "pizza", icon: Pizza, label: "Pizza" },

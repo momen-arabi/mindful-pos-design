@@ -106,27 +106,27 @@ interface OrderItemProps {
 
 const OrderItem = ({ name, price, quantity, image }: OrderItemProps) => {
   return (
-    <div className="flex items-center gap-3">
-      <div className="w-12 h-12 bg-gray-50 rounded-lg flex-shrink-0">
+    <div className="flex items-center gap-4 p-3 rounded-lg hover:bg-gray-50">
+      <div className="w-16 h-16 bg-gray-50 rounded-lg flex-shrink-0">
         {image ? <img src={image} alt={name} className="w-full h-full object-cover rounded-lg" /> : <PlaceholderImage className="w-full h-full object-cover rounded-lg" />}
       </div>
       <div className="flex-1">
         <div className="flex items-center gap-2">
           <span className="text-sm font-medium">{name}</span>
-          <span className="text-gray-500 text-sm">${price.toFixed(2)}</span>
+          <span className="text-sm text-gray-500">${price.toFixed(2)}</span>
         </div>
-        <div className="flex items-center gap-2 mt-2">
-          <button className="text-gray-400 hover:text-gray-600 transition-colors">
-            <Minus className="w-4 h-4" />
+        <div className="flex items-center gap-3 mt-3">
+          <button className="text-gray-400 hover:text-red-500 transition-colors p-1">
+            <Minus className="w-5 h-5" />
           </button>
-          <span className="text-sm w-4 text-center">{quantity}</span>
-          <button className="text-gray-400 hover:text-gray-600 transition-colors">
-            <Plus className="w-4 h-4" />
+          <span className="w-12 text-sm text-center font-medium">{quantity}</span>
+          <button className="text-gray-400 hover:text-green-500 transition-colors p-1">
+            <Plus className="w-5 h-5" />
           </button>
         </div>
       </div>
-      <button className="text-red-500 hover:text-red-600 transition-colors">
-        <Trash2 className="w-4 h-4" />
+      <button className="text-red-500 hover:text-red-600 transition-colors p-1">
+        <Trash2 className="w-5 h-5" />
       </button>
     </div>
   );
@@ -140,7 +140,12 @@ interface PaymentMethodProps {
 
 const PaymentMethod = ({ label, icon: Icon, active }: PaymentMethodProps) => {
   return (
-    <Button variant={active ? "default" : "outline"} className="h-auto p-2 flex flex-col items-center justify-center gap-1">
+    <Button
+      variant={active ? "default" : "outline"}
+      className={`h-auto p-2 flex flex-col items-center justify-center gap-1 ${
+        active ? "bg-primary/10 border-primary text-primary hover:bg-primary/20" : "bg-gray-50 border-gray-200 text-gray-600 hover:bg-gray-100 hover:text-gray-700"
+      }`}
+    >
       {Icon && <Icon className="w-4 h-4 md:w-5 md:h-5" />}
       <span className="text-xs md:text-sm">{label}</span>
     </Button>
