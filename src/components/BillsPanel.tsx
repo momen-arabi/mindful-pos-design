@@ -1,5 +1,8 @@
 
 import { CreditCard } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
 
 export const BillsPanel = () => {
   return (
@@ -19,7 +22,9 @@ export const BillsPanel = () => {
         />
       </div>
 
-      <div className="border-t border-gray-200 pt-4 mb-4 md:mb-6">
+      <Separator className="mb-4" />
+      
+      <div className="mb-4 md:mb-6">
         <div className="flex justify-between mb-2">
           <span className="text-gray-600 text-sm md:text-base">Subtotal</span>
           <span className="font-semibold text-sm md:text-base">$15.01</span>
@@ -37,9 +42,9 @@ export const BillsPanel = () => {
           <PaymentMethod label="Card" icon={CreditCard} />
           <PaymentMethod label="Wallet" />
         </div>
-        <button className="w-full bg-primary text-white py-2.5 md:py-3 rounded-lg text-sm md:text-base hover:bg-primary/90 transition-colors">
+        <Button className="w-full" size="lg">
           Print Bills
-        </button>
+        </Button>
       </div>
     </div>
   );
@@ -71,15 +76,12 @@ interface PaymentMethodProps {
 
 const PaymentMethod = ({ label, icon: Icon, active }: PaymentMethodProps) => {
   return (
-    <button
-      className={`p-2 rounded-lg border flex flex-col items-center justify-center gap-1 transition-colors ${
-        active
-          ? "border-primary bg-primary/5 text-primary"
-          : "border-gray-200 hover:border-gray-300"
-      }`}
+    <Button
+      variant={active ? "default" : "outline"}
+      className="h-auto p-2 flex flex-col items-center justify-center gap-1"
     >
       {Icon && <Icon className="w-4 h-4 md:w-5 md:h-5" />}
       <span className="text-xs md:text-sm">{label}</span>
-    </button>
+    </Button>
   );
 };

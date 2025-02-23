@@ -1,5 +1,8 @@
 
 import { Coffee, IceCream, Pizza, Salad } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 const categories = [
   { id: "coffee", icon: Coffee, label: "Coffee" },
@@ -21,22 +24,21 @@ export const MainContent = ({
     <main className="flex-1 p-4 md:p-6 overflow-auto min-h-0">
       <header className="mb-6 md:mb-8">
         <h1 className="text-xl md:text-2xl font-semibold mb-4 md:mb-6">Choose Category</h1>
-        <div className="flex gap-2 md:gap-4 overflow-x-auto pb-4 scrollbar-hide">
-          {categories.map((category) => (
-            <button
-              key={category.id}
-              onClick={() => onCategoryChange(category.id)}
-              className={`flex flex-col items-center p-3 md:p-4 rounded-xl min-w-[80px] md:min-w-[100px] transition-all ${
-                selectedCategory === category.id
-                  ? "bg-primary text-white"
-                  : "bg-white text-gray-600 hover:bg-gray-50"
-              }`}
-            >
-              <category.icon className="w-5 h-5 md:w-6 md:h-6 mb-1 md:mb-2" />
-              <span className="text-xs md:text-sm">{category.label}</span>
-            </button>
-          ))}
-        </div>
+        <ScrollArea className="w-full whitespace-nowrap">
+          <div className="flex gap-2 md:gap-4 pb-4">
+            {categories.map((category) => (
+              <Button
+                key={category.id}
+                onClick={() => onCategoryChange(category.id)}
+                variant={selectedCategory === category.id ? "default" : "outline"}
+                className="flex flex-col items-center p-3 md:p-4 h-auto min-w-[80px] md:min-w-[100px]"
+              >
+                <category.icon className="w-5 h-5 md:w-6 md:h-6 mb-1 md:mb-2" />
+                <span className="text-xs md:text-sm">{category.label}</span>
+              </Button>
+            ))}
+          </div>
+        </ScrollArea>
       </header>
 
       <section>
@@ -69,26 +71,28 @@ interface ProductCardProps {
 
 const ProductCard = ({ name, price, image }: ProductCardProps) => {
   return (
-    <div className="bg-white rounded-xl p-3 md:p-4 animate-fadeIn">
-      <div className="flex gap-3 md:gap-4">
-        <img
-          src={image}
-          alt={name}
-          className="w-20 h-20 md:w-24 md:h-24 object-cover rounded-lg"
-        />
-        <div className="flex-1">
-          <h3 className="font-semibold mb-1 md:mb-2 text-sm md:text-base">{name}</h3>
-          <p className="text-gray-500 text-xs md:text-sm mb-3 md:mb-4">
-            Rich, creamy and deliciously smooth
-          </p>
-          <div className="flex justify-between items-center">
-            <span className="font-semibold text-sm md:text-base">${price.toFixed(2)}</span>
-            <button className="bg-primary text-white px-3 md:px-4 py-1.5 md:py-2 rounded-lg text-sm md:text-base hover:bg-primary/90 transition-colors">
-              Add to order
-            </button>
+    <Card className="animate-fadeIn">
+      <CardContent className="p-3 md:p-4">
+        <div className="flex gap-3 md:gap-4">
+          <img
+            src={image}
+            alt={name}
+            className="w-20 h-20 md:w-24 md:h-24 object-cover rounded-lg"
+          />
+          <div className="flex-1">
+            <h3 className="font-semibold mb-1 md:mb-2 text-sm md:text-base">{name}</h3>
+            <p className="text-gray-500 text-xs md:text-sm mb-3 md:mb-4">
+              Rich, creamy and deliciously smooth
+            </p>
+            <div className="flex justify-between items-center">
+              <span className="font-semibold text-sm md:text-base">${price.toFixed(2)}</span>
+              <Button size="sm" className="h-8 md:h-9">
+                Add to order
+              </Button>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
+      </CardContent>
+    </Card>
   );
 };
