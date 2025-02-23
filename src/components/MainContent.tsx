@@ -5,11 +5,12 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { PlaceholderImage } from "./PlaceholderImage";
 
 const categories = [
-  { id: "all", icon: LayoutGrid, label: "All" },
-  { id: "coffee", icon: Coffee, label: "Coffee" },
-  { id: "icecream", icon: IceCream, label: "Ice Cream" },
-  { id: "pizza", icon: Pizza, label: "Pizza" },
-  { id: "salad", icon: Salad, label: "Salad" },
+  { icon: LayoutGrid, label: "All Menu", items: "110 Items" },
+  { icon: Coffee, label: "Coffee", items: "20 Items", isActive: true },
+  { icon: IceCream, label: "Cakes", items: "20 Items" },
+  { icon: Pizza, label: "Donuts", items: "20 Items" },
+  { icon: Salad, label: "Pastries", items: "20 Items" },
+  { icon: Salad, label: "Sandwich", items: "20 Items" },
 ];
 
 interface MainContentProps {
@@ -21,21 +22,21 @@ export const MainContent = ({ selectedCategory, onCategoryChange }: MainContentP
   return (
     <main className="flex-1 p-4 md:p-6 overflow-auto min-h-0">
       <header className="mb-6 md:mb-8">
-        <ScrollArea className="w-full whitespace-nowrap">
-          <div className="flex gap-2 md:gap-4 pb-4">
-            {categories.map((category) => (
-              <Button
-                key={category.id}
-                onClick={() => onCategoryChange(category.id)}
-                variant={selectedCategory === category.id ? "default" : "outline"}
-                className="flex flex-col items-center p-3 md:p-4 h-auto min-w-[80px] md:min-w-[100px]"
-              >
-                <category.icon className="w-5 h-5 md:w-6 md:h-6 mb-1 md:mb-2" />
-                <span className="text-xs md:text-sm">{category.label}</span>
-              </Button>
-            ))}
-          </div>
-        </ScrollArea>
+        <div className="flex gap-6 pb-4 overflow-x-auto">
+          {categories.map((category) => (
+            <Button
+              key={category.label}
+              variant="ghost"
+              className={`flex flex-col items-center p-4 h-auto min-w-[100px] rounded-xl transition-colors ${
+                category.isActive ? "bg-blue-500 text-white [&_span]:text-white [&_svg]:text-white hover:bg-blue-600" : "bg-white hover:bg-gray-100"
+              }`}
+            >
+              <category.icon className="w-6 h-6 mb-2" />
+              <span className="text-sm font-medium">{category.label}</span>
+              <span className="text-xs text-gray-500">{category.items}</span>
+            </Button>
+          ))}
+        </div>
       </header>
 
       <section>
