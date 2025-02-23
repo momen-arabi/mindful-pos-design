@@ -1,49 +1,94 @@
-
-import { CreditCard } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
+import { Plus, Minus, Trash2, Pencil, Coins, CreditCard, Wallet, User, ChevronDown, ShoppingCart, Receipt } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
+import { Button } from "./ui/button";
+import { PlaceholderImage } from "@/components/PlaceholderImage";
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 
-export const BillsPanel = () => {
+const BillsPanel = () => {
   return (
-    <div className="w-full md:w-80 bg-white border-t md:border-l border-gray-200 p-4 md:p-6 overflow-auto animate-slideIn">
-      <h2 className="text-lg md:text-xl font-semibold mb-4 md:mb-6">Bills</h2>
-      
-      <div className="space-y-3 md:space-y-4 mb-4 md:mb-6">
-        <OrderItem
-          name="Caramel Frappuccino"
-          quantity={1}
-          price={5.99}
-        />
-        <OrderItem
-          name="Chocolate Frappuccino"
-          quantity={2}
-          price={4.51}
-        />
+    <div className="w-full md:w-[400px] bg-white border-l border-gray-200 p-6 overflow-auto">
+      <div className="mb-6 flex items-center gap-2">
+        <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
+          <User className="w-6 h-6 text-primary" />
+        </div>
+        <div className="text-left">
+          <p className="text-xl font-medium">Eloise's Order</p>
+          <p className="text-xs text-gray-500">Order Number: #005</p>
+        </div>
+      </div>
+
+      <div className="flex items-center justify-between mb-4 gap-3">
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="outline" className="flex items-center gap-2 flex-1 w-full focus-visible:ring-0 focus-visible:ring-offset-0">
+              <div className="text-left">
+                <p className="text-sm text-muted-foreground">Select Table</p>
+              </div>
+              <ChevronDown className="w-4 h-4 ml-auto" />
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="start" className="w-[200px]">
+            <DropdownMenuItem>Table 01</DropdownMenuItem>
+            <DropdownMenuItem>Table 02</DropdownMenuItem>
+            <DropdownMenuItem>Table 03</DropdownMenuItem>
+            <DropdownMenuItem>Table 04</DropdownMenuItem>
+            <DropdownMenuItem>Table 05</DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="outline" className="flex items-center gap-2 flex-1 w-full focus-visible:ring-0 focus-visible:ring-offset-0">
+              <div className="text-left">
+                <p className="text-sm text-muted-foreground">Order Type</p>
+              </div>
+              <ChevronDown className="w-4 h-4 ml-auto" />
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end" className="w-[200px]">
+            <DropdownMenuItem>Dine In</DropdownMenuItem>
+            <DropdownMenuItem>Take Away</DropdownMenuItem>
+            <DropdownMenuItem>Delivery</DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      </div>
+
+      <div className="space-y-4 mb-6">
+        <OrderItem name="Beef Crowich" price={5.5} quantity={1} image="" />
+        <OrderItem name="Sliced Black Forest" price={5.0} quantity={2} image="" />
       </div>
 
       <Separator className="mb-4" />
-      
-      <div className="mb-4 md:mb-6">
-        <div className="flex justify-between mb-2">
-          <span className="text-gray-600 text-sm md:text-base">Subtotal</span>
-          <span className="font-semibold text-sm md:text-base">$15.01</span>
+
+      <div className="space-y-2 mb-6">
+        <div className="flex justify-between">
+          <span className="text-gray-600">Subtotal</span>
+          <span>$ 20.00</span>
         </div>
         <div className="flex justify-between">
-          <span className="text-gray-600 text-sm md:text-base">Total</span>
-          <span className="font-semibold text-base md:text-lg">$15.01</span>
+          <span className="text-gray-500 text-xs">Tax (10%)</span>
+          <span className="text-gray-500 text-xs">$ 2.00</span>
+        </div>
+        <div className="flex justify-between">
+          <span className="text-green-600 text-xs">Discount</span>
+          <span className="text-green-600 text-xs">-$ 1.00</span>
+        </div>
+        <div className="flex justify-between pt-2">
+          <span className="font-semibold">TOTAL</span>
+          <span>$ 21.00</span>
         </div>
       </div>
 
       <div>
         <h3 className="text-base md:text-lg font-semibold mb-3 md:mb-4">Payment Method</h3>
         <div className="grid grid-cols-3 gap-2 mb-4 md:mb-6">
-          <PaymentMethod label="Cash" active />
+          <PaymentMethod label="Cash" icon={Coins} active />
           <PaymentMethod label="Card" icon={CreditCard} />
-          <PaymentMethod label="Wallet" />
+          <PaymentMethod label="Wallet" icon={Wallet} />
         </div>
         <Button className="w-full" size="lg">
-          Print Bills
+          <Receipt className="w-5 h-5 mr-0" />
+          Place Order
         </Button>
       </div>
     </div>
@@ -52,18 +97,35 @@ export const BillsPanel = () => {
 
 interface OrderItemProps {
   name: string;
-  quantity: number;
   price: number;
+  quantity: number;
+  image: string;
 }
 
-const OrderItem = ({ name, quantity, price }: OrderItemProps) => {
+const OrderItem = ({ name, price, quantity, image }: OrderItemProps) => {
   return (
-    <div className="flex items-center justify-between">
-      <div className="flex items-center gap-2">
-        <span className="text-xs md:text-sm text-gray-600">x{quantity}</span>
-        <span className="text-sm md:text-base">{name}</span>
+    <div className="flex items-center gap-3">
+      <div className="w-12 h-12 bg-gray-50 rounded-lg flex-shrink-0">
+        {image ? <img src={image} alt={name} className="w-full h-full object-cover rounded-lg" /> : <PlaceholderImage className="w-full h-full object-cover rounded-lg" />}
       </div>
-      <span className="font-semibold text-sm md:text-base">${(price * quantity).toFixed(2)}</span>
+      <div className="flex-1">
+        <div className="flex items-center gap-2">
+          <span className="text-sm font-medium">{name}</span>
+          <span className="text-gray-500 text-sm">${price.toFixed(2)}</span>
+        </div>
+        <div className="flex items-center gap-2 mt-2">
+          <button className="text-gray-400 hover:text-gray-600 transition-colors">
+            <Minus className="w-4 h-4" />
+          </button>
+          <span className="text-sm w-4 text-center">{quantity}</span>
+          <button className="text-gray-400 hover:text-gray-600 transition-colors">
+            <Plus className="w-4 h-4" />
+          </button>
+        </div>
+      </div>
+      <button className="text-red-500 hover:text-red-600 transition-colors">
+        <Trash2 className="w-4 h-4" />
+      </button>
     </div>
   );
 };
@@ -76,12 +138,11 @@ interface PaymentMethodProps {
 
 const PaymentMethod = ({ label, icon: Icon, active }: PaymentMethodProps) => {
   return (
-    <Button
-      variant={active ? "default" : "outline"}
-      className="h-auto p-2 flex flex-col items-center justify-center gap-1"
-    >
+    <Button variant={active ? "default" : "outline"} className="h-auto p-2 flex flex-col items-center justify-center gap-1">
       {Icon && <Icon className="w-4 h-4 md:w-5 md:h-5" />}
       <span className="text-xs md:text-sm">{label}</span>
     </Button>
   );
 };
+
+export default BillsPanel;

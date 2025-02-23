@@ -1,14 +1,8 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
   darkMode: ["class"],
-  content: [
-    "./pages/**/*.{ts,tsx}",
-    "./components/**/*.{ts,tsx}",
-    "./app/**/*.{ts,tsx}",
-    "./src/**/*.{ts,tsx}",
-  ],
+  content: ["./pages/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}", "./app/**/*.{ts,tsx}", "./src/**/*.{ts,tsx}"],
   prefix: "",
   theme: {
     container: {
@@ -26,32 +20,32 @@ export default {
         background: "#F8F9FA",
         foreground: "hsl(var(--foreground))",
         primary: {
-          DEFAULT: "#8B4513",
-          foreground: "#FFFFFF",
+          DEFAULT: "#3B82F6",
+          foreground: "#F8F9FA",
         },
         secondary: {
-          DEFAULT: "#D2691E",
-          foreground: "#FFFFFF",
+          DEFAULT: "#60A5FA",
+          foreground: "#F8F9FA",
         },
         destructive: {
           DEFAULT: "hsl(var(--destructive))",
           foreground: "hsl(var(--destructive-foreground))",
         },
         muted: {
-          DEFAULT: "#F5F5F5",
-          foreground: "#6B7280",
+          DEFAULT: "#F1F5F9",
+          foreground: "#64748B",
         },
         accent: {
-          DEFAULT: "#FFF8F3",
-          foreground: "#8B4513",
+          DEFAULT: "#F1F5F9",
+          foreground: "#0F172A",
         },
         card: {
           DEFAULT: "#FFFFFF",
-          foreground: "#1F2937",
+          foreground: "#0F172A",
         },
       },
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
+        sans: ["Poppins", "sans-serif"],
       },
       borderRadius: {
         lg: "var(--radius)",

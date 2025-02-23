@@ -1,8 +1,7 @@
-
 import { Home, Coffee, FileText, Settings, Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
-export const Sidebar = () => {
+const Sidebar = () => {
   return (
     <div className="w-full md:w-16 h-16 md:h-screen bg-white border-b md:border-r border-gray-200 flex md:flex-col items-center justify-between md:justify-start py-2 md:py-4 px-4 md:px-0 animate-slideIn">
       <div className="md:mb-8">
@@ -27,3 +26,5 @@ export const Sidebar = () => {
     </div>
   );
 };
+
+export default Sidebar;
