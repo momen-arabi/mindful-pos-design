@@ -8,9 +8,9 @@ const Index = () => {
   const [selectedCategory, setSelectedCategory] = useState("coffee");
 
   return (
-    <div className="flex h-screen bg-background">
+    <div className="flex flex-col md:flex-row h-screen bg-background">
       <Sidebar />
-      <div className="flex flex-1 overflow-hidden">
+      <div className="flex flex-col md:flex-row flex-1 overflow-hidden">
         <MainContent 
           selectedCategory={selectedCategory}
           onCategoryChange={setSelectedCategory}
