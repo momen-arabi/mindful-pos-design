@@ -8,8 +8,8 @@ const categories = [
   { icon: LayoutGrid, label: "All Menu", items: "110 Items" },
   { icon: Coffee, label: "Coffee", items: "20 Items", isActive: true },
   { icon: Cake, label: "Cakes", items: "20 Items" },
-  { icon: Pizza, label: "Donuts", items: "20 Items" },
-  { icon: Salad, label: "Pastries", items: "20 Items" },
+  { icon: Pizza, label: "Pizza", items: "20 Items" },
+  { icon: Salad, label: "Salads", items: "20 Items" },
   { icon: Sandwich, label: "Sandwich", items: "20 Items" },
 ];
 
